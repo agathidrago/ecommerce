@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "PRODUCT")
@@ -27,7 +28,6 @@ public class ProductModel implements Serializable {
     @OneToOne
     private ProductCategoriesModel category;
     
-    @ManyToOne
-    @JoinColumn(name = "product_image_id", insertable = false, updatable = false)
-    private ProductImagesModel productImagesModel;
+    @OneToMany
+    private List<ProductImagesModel> productImagesModel;
 }

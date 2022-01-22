@@ -19,7 +19,7 @@ public class ProductImagesModel {
     private Long id;
     private String imagePath;
     
-    @OneToMany
-    @JoinColumn(name = "product_id") // we need to duplicate the physical information
-    private List<ProductModel> productModel;
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private ProductModel productModel;
 }
