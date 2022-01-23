@@ -19,6 +19,9 @@ public class ProductImagesModel {
     private Long id;
     private String imagePath;
     
+    @Transient
+    private byte[] imageFile;
+    
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private ProductModel productModel;

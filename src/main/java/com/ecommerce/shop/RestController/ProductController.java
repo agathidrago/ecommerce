@@ -1,6 +1,7 @@
 package com.ecommerce.shop.RestController;
 
 import com.ecommerce.shop.Model.ProductCategoriesModel;
+import com.ecommerce.shop.Model.ProductImagesModel;
 import com.ecommerce.shop.Model.ProductModel;
 import com.ecommerce.shop.Service.CategoryService;
 import com.ecommerce.shop.Service.ProductService;
@@ -56,6 +57,17 @@ public class ProductController {
     @DeleteMapping(path = "/delete/{productId}")
     public void deleteProduct(@PathVariable("productId") Long productId) {
         productService.deleteProduct(productId);
+    }
+    
+    @PostMapping("/uploadImage")
+    public ResponseEntity<ProductImagesModel> addImage(@RequestBody ProductImagesModel productImage) {
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/products/uploadImage").toUriString());
+        return ResponseEntity.created(uri).body(productService.addNewProductImage(productImage));
+    }
+    
+    @GetMapping(path = "getImages/{productId}")
+    public List<ProductImagesModel> getProductImagesById(@PathVariable("productId") Long productId) {
+        return productService.getImagesByProductId(productId);
     }
 
 }
